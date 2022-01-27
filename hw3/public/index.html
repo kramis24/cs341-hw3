@@ -1,0 +1,124 @@
+<!-- Author: Dylan Kramis -->
+<!-- Version: 1/24/2021   -->
+<!DOCTYPE html>
+<html>
+  <head>
+  <!-- css style sheet link -->
+  <link rel="stylesheet" href="stylesheets\\kramis24_hw.css">
+
+  <!-- jQuery library, though none of it is actually used at this point -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"/>
+  </script>
+  </head>
+
+<!-- the code below contains everything seen on the page -->
+  <body>
+
+    <!-- header -->
+    <h1>Cheesecake Order Form</h1>
+
+    <!-- divider for styling purposes -->
+    <div id="div0">
+
+      <!-- image of a cheesecake -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg"
+       alt="Cheesecake with strawberry sauce" width="200" height="200"/>
+
+      <!-- begin order form -->
+      <form id="order-form">
+
+        <!-- topping selection drop down and radio buttons in a horizontal layout -->
+        <table>
+          <!-- labels -->
+          <tr>
+            <td>Quantity</td>
+            <td>Topping</td>
+          </tr>
+          <tr>
+            <td>
+              <!-- selection drop down -->
+              <select>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+              </select>
+            </td>
+       
+            <td>
+              <!-- selection radio buttons -->
+              <input type="radio" id="plain" name="topping" value="plain"/>
+              <label for="plain">Plain</label><br>
+              <input type="radio" id="cherry" name="topping" value="cherry"/>
+              <label for="cherry">Cherry</label><br>
+              <input type="radio" id="chocolate" name="topping" value="chocolate"/>
+              <label for="chocolate">Chocolate</label><br>
+            </td>
+          </tr>
+        </table>
+
+        <!-- input text box for special instructions -->
+        <p>Notes:</p>
+        <textarea id="notes" rows="4" cols="50" placeholder="Enter any special instructions here."></textarea>
+        <br>
+        
+      </form>
+
+      <!-- order button -->
+      <button type="submit" id="order-button" onclick="orderClick()">Order</button>
+
+      <!-- reference for orderClick function -->
+      <script src="javascripts\\input.js"></script>
+      
+      <!-- thank you message to be displayed when order submitted -->
+      <p id="thank-you-message" style="display:none">Thank you! Your order has been placed</p>
+
+      <!-- order history -->
+      <div id="div1">
+        <h3>Total Orders Last&nbsp</h3>
+
+        <!-- cell containing dropdown selector -->
+        <!-- Credit: https://www.w3schools.com/howto/howto_css_dropdown.asp -->
+        <!-- for basic implementation, also W3Schools in general for        -->
+        <!-- helping me find the html and css attributes to make this match -->
+        <!-- the homework specifications through much frustration.          -->
+        <div class="dropdown">
+          <h3 id="month">Jan</h3>
+
+          <!-- dropdown content with function calls, these are buttons      -->
+          <!-- due to problems with clicking and margins/padding when using -->
+          <!-- h3 to match the text containing the dropdown                 -->
+          <div class="dropdown-content">
+            <button onclick="changeMonth('Jan')">Jan</button>
+            <button onclick="changeMonth('Feb')">Feb</button>
+            <button onclick="changeMonth('Mar')">Mar</button>
+            <button onclick="changeMonth('Apr')">Apr</button>
+            <button onclick="changeMonth('May')">May</button>
+            <button onclick="changeMonth('Jun')">Jun</button>
+            <button onclick="changeMonth('Jul')">Jul</button>
+            <button onclick="changeMonth('Aug')">Aug</button>
+            <button onclick="changeMonth('Sep')">Sep</button>
+            <button onclick="changeMonth('Oct')">Oct</button>
+            <button onclick="changeMonth('Nov')">Nov</button>
+            <button onclick="changeMonth('Dec')">Dec</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- reference for changeMonth function -->
+      <script src="javascripts\\input.js"></script>
+
+      <ul>
+        <li>11 cherry</li>
+        <li>17 chocolate</li>
+        <li>31 plain</li>
+      </ul>
+
+      <!-- extra line breaks to keep page from running out of space -->
+      <br><br><br><br><br><br><br><br>
+
+    </div>
+
+  </body>
+
+</html>

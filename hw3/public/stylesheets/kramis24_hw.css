@@ -1,0 +1,106 @@
+/* Author: Dylan Kramis
+ * Version: 1/24/2021
+ * NOTE: Fonts used are included in the folder containing site files.
+ */
+
+/* background color and alignment rules for page as a whole */
+body {
+  background-color: black;
+  text-align: center;
+}
+
+/* styling for main content container block */
+#div0 {
+  border: 4px solid cyan;
+  background-color: #001540;
+  margin-left: 12%;
+  margin-right: 12%;
+  align-content: left;
+  text-align: left;
+  padding: 8px 8px;
+  color: azure;
+  font: 16px Noto Sans Mono, monospace;
+}
+
+/* color and font for page title */
+h1 {
+  color: cyan;
+  font: 48px Osaka-Sans Serif, sans-serif;
+}
+
+/* color and font for headings */
+h3 {
+  font: 24px Osaka-Sans Serif, sans-serif;
+  margins: 4px 0px;
+}
+
+/* styling for buttons, also used for non-select dropdowns */
+button {
+  border: none;
+  padding: 8px 16px;
+  background-color: cyan;
+  color: black;
+  font: bold 16px Osaka-Sans Serif, sans-serif;
+}
+
+/* styling used for select dropdowns */
+select {
+  border: none;
+  padding: 8px 16px;
+  background-color: cyan;
+  color: black;
+  font: bold 16px Osaka-Sans Serif, sans-serif;
+}
+
+/* styling used for text areas */
+textarea {
+  background-color: black;
+  border: 4px solid cyan;
+  color: cyan;
+  font: 16px Noto Sans Mono, monospace;
+}
+
+/* table cell padding */
+td {
+  padding: 4px 4px;
+}
+
+/* unordered list position rules */
+ul {
+  position: absolute;
+}
+
+/* display and border rules for divider containing month select dropdown */
+#div1 {
+  display: flex;
+  border: none;
+}
+
+/* special text color and positioning for dropdown text */
+.dropdown {
+  position: relative;
+  border: none;
+  color: cyan;
+  
+}
+
+/* positioning, size, hiding, and scrolling for dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: inherit;
+  height: 160px;
+  background-color: cyan;
+  color: black;
+  padding: 4px 0px;
+  z-index: 1;
+  overflow: scroll;
+}
+
+/* displays dropdown content when highlighted text hovered over */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
