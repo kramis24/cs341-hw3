@@ -1,5 +1,8 @@
-/* Author: Dylan Kramis
- * Version: 2/7/2022
+/* input.js
+ * Processes inputs from the webpage and posts requests to the server.
+ * 
+ * Author: Dylan Kramis
+ * Version: 2/14/2022
  */
 
 /* orderClick
@@ -25,25 +28,43 @@ function orderClick() {
 /* changeMonth
  * Changes the month for which order history is displayed.
  */
-function changeMonth(newMonth) {
+function changeMonth(month) {
   // changes the month displayed in text
-  document.getElementById("month").textContent = newMonth;
+  document.getElementById("month-text").textContent = month;
 
   // requests order data through post
-  $.post("/orders", { month: newMonth }, function (data) {
+  $.post("/orders", { key: month }, function (data) {
 
-    // if received, data from each order will be used to update the page
-    for (let i = 0; i < data.length; i++) {
+    // if "no connection" received, update text to say so
+    if (data == "no connection") {
+      document.getElementById("cherry-count").textContent = "no connection";
+      document.getElementById("chocolate-count").textContent = "no connection";
+      document.getElementById("plain-count").textContent = "no connection";
+    }
 
-      // checks parameters to determine how to update data. 
-      // NOTE: currently not set up to handle multiple order records of the same topping!
-      if (data[i].topping == "cherry") {
-        document.getElementById("cherry-count").textContent = data[i].quantity + " cherry";
-      } else if (data[i].topping == "chocolate") {
-        document.getElementById("chocolate-count").textContent = data[i].quantity + " chocolate";
-      } else if (data[i].topping == "plain") {
-        document.getElementById("plain-count").textContent = data[i].quantity + " plain";
+    //else, count up order data and display
+    else {
+
+      // order quantities
+      var cherryQuantity = 0, chocolateQuantity = 0, plainQuantity = 0;
+
+      // updates quantities for each order
+      for (let i = 0; i < data.length; i++) {
+
+        // checks parameters to determine how to update data. 
+        if (data[i].TOPPING == "cherry") {
+          cherryQuantity += data[i].QUANTITY;
+        } else if (data[i].TOPPING == "chocolate") {
+          chocolateQuantity += data[i].QUANTITY;
+        } else if (data[i].TOPPING == "plain") {
+          plainQuantity += data[i].QUANTITY;
+        }
       }
+
+      // updates text display
+      document.getElementById("cherry-count").textContent = cherryQuantity + " cherry";
+      document.getElementById("chocolate-count").textContent = chocolateQuantity + " chocolate";
+      document.getElementById("plain-count").textContent = plainQuantity + " plain";
     }
   });
 }
