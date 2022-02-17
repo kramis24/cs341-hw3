@@ -2,7 +2,8 @@
  * Processes inputs from the webpage and posts requests to the server.
  * 
  * Author: Dylan Kramis
- * Version: 2/14/2022
+ * Version: 2/16/2022
+ * Issues: Special instructions/notes box doesn't always accept text.
  */
 
 /* orderClick
@@ -10,18 +11,43 @@
  */
 function orderClick() {
 
-  // gets text
+  // gathers test in notes
   var notesText = document.getElementById("notes").value;
 
   // alerts customer if 'vegan' is found in the notes
   if (notesText.indexOf('vegan') > -1) {
   alert("WARNING: Cheesecake contains dairy, which is an animal product and therefore not vegan!");
 
-  // otherwise hides order form and thanks user
+  // otherwise submits order and thanks user
   } else {
-    document.getElementById("order-form").style.display = "none";
-    document.getElementById("order-button").style.display = "none";
-    document.getElementById("thank-you-message").style.display = "block";
+
+    // detects complicated oreder fields and retrieves data
+    var quantity = document.getElementById("quantity-select").value;
+
+    var topping;// radio button handler
+    if (document.getElementById("chocolate-radio").checked) {
+      topping = "chocolate";
+    } else if (document.getElementById("cherry-radio").checked) {
+      topping = "cherry";
+    } else if (document.getElementById("plain-radio").checked) {
+      topping = "plain";
+    } else {// default response, asks user to select a topping
+      alert("Please select a topping.");
+      return;
+    }
+
+    // sends post request to log order
+    $.post("/neworder", { quantity: quantity, topping: topping, notes: notesText }, function (data) {
+
+      // hides order form and reveals thank you message if order successful
+      if (data == "success") {
+        document.getElementById("order-form").style.display = "none";
+        document.getElementById("order-button").style.display = "none";
+        document.getElementById("thank-you-message").style.display = "block";
+      } else {// alerts if unsuccessful
+        alert("Sorry, you order could not be processed.")
+      }
+    });
   }
 }
 

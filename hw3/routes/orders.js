@@ -25,9 +25,6 @@ router.get('*', function (req, res, next) {
 // NOTE: for future reference, you might want to clarify that "app" isn't needed
 router.post('*', function (req, res, next) {
 
-  // test only, log month key
-  console.log("Month = " + req.body.key);
-
   // connect to mysql, issue query, process results with function
   dbms.dbquery("SELECT * FROM ORDERS;", function (error, result) {
 
